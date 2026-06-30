@@ -1,0 +1,151 @@
+{
+	"name": "df_filter_ifCondition_year",
+	"properties": {
+		"folder": {
+			"name": "df_20260619"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_datafiles_input",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "ls_adls_datasource",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sinkDate2015"
+				},
+				{
+					"linkedService": {
+						"referenceName": "ls_adls_datasource",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sinkDate2016"
+				},
+				{
+					"linkedService": {
+						"referenceName": "ls_adls_datasource",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sinkDate2017"
+				},
+				{
+					"linkedService": {
+						"referenceName": "ls_adls_datasource",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sinkDate2018"
+				},
+				{
+					"linkedService": {
+						"referenceName": "ls_adls_datasource",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sinkDate2019"
+				}
+			],
+			"transformations": [
+				{
+					"name": "split1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          EmpNo as short,",
+				"          EName as string,",
+				"          Job as string,",
+				"          HireDate as date,",
+				"          Salary as integer,",
+				"          Comission as double,",
+				"          DeptNo as short",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 split(year(HireDate)==2015,",
+				"     year(HireDate)==2016,",
+				"     year(HireDate)==2017,",
+				"     year(HireDate)==2018,",
+				"     disjoint: false) ~> split1@(empHireDate2015, empHireDate2016, empHireDate2017, empHireDate2018, empHireDate2019)",
+				"split1@empHireDate2015 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'delimited',",
+				"     fileSystem: 'datasource',",
+				"     folderPath: 'output/empHireDate2015',",
+				"     columnDelimiter: ',',",
+				"     escapeChar: '\\\\',",
+				"     quoteChar: '',",
+				"     columnNamesAsHeader: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkDate2015",
+				"split1@empHireDate2016 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'delimited',",
+				"     fileSystem: 'datasource',",
+				"     folderPath: 'output/empHireDate2016',",
+				"     columnDelimiter: ',',",
+				"     escapeChar: '\\\\',",
+				"     quoteChar: '',",
+				"     columnNamesAsHeader: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkDate2016",
+				"split1@empHireDate2017 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'delimited',",
+				"     fileSystem: 'datasource',",
+				"     folderPath: 'output/empHireDate2017',",
+				"     columnDelimiter: ',',",
+				"     escapeChar: '\\\\',",
+				"     quoteChar: '',",
+				"     columnNamesAsHeader: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkDate2017",
+				"split1@empHireDate2018 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'delimited',",
+				"     fileSystem: 'datasource',",
+				"     folderPath: 'output/empHireDate2018',",
+				"     columnDelimiter: ',',",
+				"     escapeChar: '\\\\',",
+				"     quoteChar: '',",
+				"     columnNamesAsHeader: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkDate2018",
+				"split1@empHireDate2019 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'delimited',",
+				"     fileSystem: 'datasource',",
+				"     folderPath: 'output/empHireDate2019',",
+				"     columnDelimiter: ',',",
+				"     escapeChar: '\\\\',",
+				"     quoteChar: '',",
+				"     columnNamesAsHeader: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkDate2019"
+			]
+		}
+	}
+}

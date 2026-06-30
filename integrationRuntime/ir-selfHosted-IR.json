@@ -1,0 +1,10 @@
+{
+	"name": "ir-selfHosted-IR",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "User for my practice purpose only.",
+		"typeProperties": {
+			"selfContainedInteractiveAuthoringEnabled": false
+		}
+	}
+}

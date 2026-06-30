@@ -1,0 +1,64 @@
+{
+	"name": "df_firstName_lastName",
+	"properties": {
+		"folder": {
+			"name": "df_20260619"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_datafiles_input",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "ls_adls_datasource",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "dcFirstLastName"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          EmpNo as short,",
+				"          EName as string,",
+				"          Job as string,",
+				"          HireDate as date,",
+				"          Salary as integer,",
+				"          Comission as double,",
+				"          DeptNo as short",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(firstName = substringIndex(EName, ' ', 1),",
+				"          lastName = substringIndex(EName, ' ', -1)) ~> dcFirstLastName",
+				"dcFirstLastName sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'delimited',",
+				"     fileSystem: 'datasource',",
+				"     folderPath: 'output/empFirstLastName',",
+				"     columnDelimiter: ',',",
+				"     escapeChar: '\\\\',",
+				"     quoteChar: '',",
+				"     columnNamesAsHeader: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}

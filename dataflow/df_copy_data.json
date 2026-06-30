@@ -1,0 +1,67 @@
+{
+	"name": "df_copy_data",
+	"properties": {
+		"folder": {
+			"name": "df_20260618"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_datafiles_input",
+						"type": "DatasetReference"
+					},
+					"name": "srcEmployee"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "ls_adls_datasource",
+						"type": "LinkedServiceReference"
+					},
+					"name": "snkEmployee"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          EmpNo as short,",
+				"          EName as string,",
+				"          Job as string,",
+				"          HireDate as date,",
+				"          Salary as integer,",
+				"          Comission as double,",
+				"          DeptNo as short",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> srcEmployee",
+				"srcEmployee sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'delimited',",
+				"     fileSystem: 'datasource',",
+				"     folderPath: 'output/employee',",
+				"     columnDelimiter: ',',",
+				"     escapeChar: '\\\\',",
+				"     quoteChar: '',",
+				"     columnNamesAsHeader: true,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          EmpNo,",
+				"          EName,",
+				"          Job,",
+				"          HireDate,",
+				"          Salary,",
+				"          Comission,",
+				"          DeptNo",
+				"     )) ~> snkEmployee"
+			]
+		}
+	}
+}

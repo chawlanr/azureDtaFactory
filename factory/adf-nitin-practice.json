@@ -1,0 +1,15 @@
+{
+	"name": "adf-nitin-practice",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "1d84806e-5e5f-432f-93f6-ab2e277ea956",
+		"tenantId": "634a1fb8-a816-469b-8dd5-614e17a7d682"
+	}
+}

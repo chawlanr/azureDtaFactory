@@ -1,0 +1,21 @@
+{
+	"name": "ls_onPrem_SqlServer",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "NitinChawla",
+			"database": "DATASTORE",
+			"encrypt": "mandatory",
+			"trustServerCertificate": true,
+			"authenticationType": "Windows",
+			"userName": "NitinChawla\\A",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI2YzQ0Mjk0MS1lMTgxLTQxNjQtODBlMC1iNDIwN2NlZjljNjkiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "ir-selfHosted-IR",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
