@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-nitin-practice"
+		},
+		"ls_adls_datasource_accountKey": {
+			"value": ""
+		},
+		"ls_onPrem_SqlServer_password": {
+			"value": ""
+		},
+		"ls_adls_datasource_properties_typeProperties_url": {
+			"value": "https://adlsnitinpractice.dfs.core.windows.net/"
+		},
+		"ls_onPrem_SqlServer_properties_typeProperties_server": {
+			"value": "NitinChawla"
+		},
+		"ls_onPrem_SqlServer_properties_typeProperties_database": {
+			"value": "DATASTORE"
+		},
+		"ls_onPrem_SqlServer_properties_typeProperties_userName": {
+			"value": "NitinChawla\\A"
+		}
+	}
+}
